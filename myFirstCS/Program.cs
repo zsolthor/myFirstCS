@@ -8,10 +8,19 @@ namespace myFirstCS  //comment
 {
     class Program
     {
+        //https://www.udemy.com/course/understandingc/
         //Lecture 2: Declaring Variables
         //Lecture 3: Displaying Variables in the Console
         //Lecture 4: Using Arithmetic Operators
         //Lecture 5: Using Bools
+        //Lecture 6: Using Char
+        //Lecture 7: Using String
+        //Lecture 8: Numeric Conversions
+        //Lecture 9: Declaring Constants (enum)
+        //Lecture 10: Console Input
+
+        enum DaysOfWeek { Sunday, Monday, Tuesday, Wednesday, Thurstday, Friday, Saturday };
+        //ha nincs szám, akkor 0-tól 6-ig van
 
         static void Main(string[] args)
         {
@@ -26,6 +35,15 @@ namespace myFirstCS  //comment
             //In the above code, the variable a is declared as a string and is initialized to "Hello World".
             //var b = "hello world";
             //The var keyword specifies implicit typing.
+
+            // int x; --deklaráció
+            // X = 10; -- definició
+            // int y = 11; --deklaráció és definició  reiter féle könyvben
+
+            //Quiz kérdés volt: Which variable declaration compnent is NOT necessary?
+            //Data Type, Identifier, Assigment Operator, Semicolon
+            //--> Assigment operator   You du not have to give a variable an initial value. 
+            //When You do, its called initialization.
 
             // 5 basic types
             int myInt = 5;
@@ -56,7 +74,7 @@ namespace myFirstCS  //comment
             //Console.WriteLine("The value of myInt is {0,-5} and the value of myDouble is {1,-5}", myInt, myDouble);
             //Console.WriteLine("The value of myInt is {0,-1} and the value of myDouble is {1,-5}", myInt, myDouble);
             //Console.WriteLine("The value of myInt is {0,-6} and the value of myDouble is {1,-5}", myInt, myDouble);
-            
+
             Console.WriteLine("THe value of myInt is " + myInt); //concatenation
             //https://docs.microsoft.com/en-us/dotnet/csharp/how-to/concatenate-multiple-strings#code-try-2
             Console.WriteLine("THe value of myInt is " + myInt + " and the value of myDouble is " + myDouble);
@@ -107,12 +125,92 @@ namespace myFirstCS  //comment
             // balról jobbra haladunk: myInt4_7 megkapja a növelt értéket
 
             //////////Lecture 5: Using Bools//////////
-            
 
+            // > >= <= < == !=
+            bool myBool5 = true;
+            bool myBool5_2 = 5 > 6;
+            myBool5_2 = 6 != 6;
+            Console.WriteLine(myBool5);
+            Console.WriteLine(myBool5_2);
 
+            int hoursWorked = 41;
+            bool doeasEmployeeGetOverTime = hoursWorked > 40;
+            Console.WriteLine("Does emloyee get overtime? {0}", doeasEmployeeGetOverTime);
 
+            //////////Lecture 6: Using Char//////////
+            char myChar6 = 'A';
+            char myChar6_1 = '5';
+            char myChar6_2 = '*';
+            char myChar6_3 = '\''; //backslash kell '\"' 
+            char myChar6_4 = '\n'; //new line \t-TAB
+            Console.WriteLine(myChar6_4);
+            Console.WriteLine(myChar6_3);
 
+            //////////Lecture 7: Using String//////////
+            string MyString7 = "Hello \"= bello";
+            Console.WriteLine(MyString7);
 
+            string name1 = "Jesse";
+            string name2 = "Jesse";
+            bool namesEqual = name1 == name2;  //V1 összehasonlítás
+            bool namesEqual2 = string.Equals(name1, name2);  //V2 összehasonlítás
+            int namesEqual3 = string.Compare(name1, name2);  //V3 összehaonlítás; itt int!!!
+            //0 megegyezik; -1 nem egyezik meg Bob-Jessie; 1 nem egyezik meg: Jessi-Bob jessie is greater than bob
+            int namesequel4 = name1.CompareTo(name2);  //V4 öszehasonlítás, olyan mint előző V3 int -1 0 1 
+            Console.WriteLine("names equal: {0}", namesEqual);
+            Console.WriteLine("names equal: {0}", namesEqual2);
+            Console.WriteLine("names equal: {0}", namesEqual3);
+            Console.WriteLine("names equal: {0}", namesEqual3);
+
+            Console.WriteLine("{0} has {1} characters", name1, name1.Length);  //--> jesse 5
+            //.Length megszámolja karaktereket
+
+            string firstCharacterOfName = name1.Substring(1, 2);
+            Console.WriteLine(firstCharacterOfName);  // (0, 1)--> J   // (1, 2) --> es
+            //.Substring első szám honnan kezdje(0-val kezdődik index mindig), második szám mennyi karaktert. 
+
+            bool startsWith = name1.StartsWith("Je");
+            Console.WriteLine(startsWith);
+            //.StartsWith ezzel kezdődik-e
+
+            //////////Lecture 8: Numeric Conversions//////////
+
+            int x8 = 5;
+            double y8 = x8;  //implicit cast
+            Console.WriteLine(y8);
+            //fordítva nem megy: cannot implicitly convert double to int.
+
+            double myDouble8 = 5.5;
+            int myInt8 = (int)myDouble8;  // explicit cast
+            //itt force van, ha nem zavar, hogy eldoja .5-öt
+            Console.WriteLine(myInt8);
+
+            //////////Lecture 9: Declaring Constants//////////
+
+            const int myConstInt = 7;
+            // nem lehet értéket változtatni: myConstInt = 1;
+            //Math.PI = 999;  //ezt sem lehet változtatni Pi értéke
+            Console.WriteLine(Math.PI);  //kiiratjuk PI értékét  --> 3.14159265358979
+
+            //enum fent lesz definiálva. 
+            DayOfWeek today = DayOfWeek.Friday;
+            Console.WriteLine(today);  // --> Friday
+            int numberOfToday = (int)today;  
+            Console.WriteLine(numberOfToday);  // --> 5
+
+            //////////Lecture 10: Console Input//////////
+
+            Console.WriteLine("What is your first name?");
+            string firstName = Console.ReadLine();
+            Console.WriteLine("What is your last name?");
+            string lastName = Console.ReadLine();
+            Console.WriteLine("Nagyon örülök Neked {0} {1}", lastName, firstName);
+
+            Console.WriteLine("Enter a number:");
+            int numberFromUser = int.Parse(Console.ReadLine());
+            numberFromUser += 10;
+            numberFromUser = numberFromUser + 10;   //2 változat: növelni 10-zel
+            Console.WriteLine("The new number is {0}", numberFromUser);
 
 
 
