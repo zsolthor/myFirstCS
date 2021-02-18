@@ -114,7 +114,7 @@ namespace fromLecture31
             {
                 if (studentsNameP == studentsP[i])
                 {
-                    contains = true;
+                    containsP = true;  //??? p vagy nélküle?
                     studentGradeP = gradesP[i];
                     break;
                 }  //nem ide tettük az if es else-be a FOUND és NOT FOUND, mert akkor minden elemre mondta volna, hogy külön sorba, hogy megtalálta-e vagy sem.
