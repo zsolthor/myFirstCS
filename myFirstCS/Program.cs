@@ -19,7 +19,7 @@ namespace myFirstCS  //comment
         //Lecture 9: Declaring Constants (enum)
         //Lecture 10: Console Input
 
-        enum DaysOfWeek { Sunday, Monday, Tuesday, Wednesday, Thurstday, Friday, Saturday };
+        enum DayOfWeek { Sunday, Monday, Tuesday, Wednesday, Thurstday, Friday, Saturday };  // enum: group of constants
         //ha nincs szám, akkor 0-tól 6-ig van
 
         static void Main(string[] args)
@@ -42,8 +42,20 @@ namespace myFirstCS  //comment
 
             //Quiz kérdés volt: Which variable declaration compnent is NOT necessary?
             //Data Type, Identifier, Assigment Operator, Semicolon
-            //--> Assigment operator   You du not have to give a variable an initial value. 
+            //--> Assigment operator   You do not have to give a variable an initial value. 
             //When You do, its called initialization.
+
+            //int i = 100;// explicitly typed variable  //In C#, variables must be declared with the data type. These are called explicitly typed variables.
+            //var j = 100; // implicitly typed local variable //C# 3.0 introduced var keyword to declare method level variables without specifying a data type explicitly.
+
+            //int i = 10;
+            //var j = i + 1; // compiles as int
+
+            //var i; // Compile-time ERROR: Implicitly-typed variables must be initialized
+            //i = 100;
+
+            // var i = 100, j = 200, k = 300; // ERROR: cannot declare var variables in a single statement
+
 
             // 5 basic types
             int myInt = 5;
@@ -124,6 +136,35 @@ namespace myFirstCS  //comment
             // -->  5   5   ez volt prefix
             // balról jobbra haladunk: myInt4_7 megkapja a növelt értéket
 
+            //POST and PREFIX:
+
+            // ++ if used as postfix on a variable, the value of variable is first returned and then gets incremented by 1
+            //int a, b;
+            //a = 10;
+            //Console.WriteLine(a++);
+            //b = a;
+            //Console.WriteLine(a);
+            //Console.WriteLine(b);  ========> 10, 11, 11
+
+            //++ if used as prefix on a variable, the value of variable gets incremented by 1.After that the value is returned unlike Postfix operator.
+            //int a, b;
+            //a = 50;
+            //Console.WriteLine(++a);
+            //b = a;
+            //Console.WriteLine(a);
+            //Console.WriteLine(b);  ========> 51, 51, 51
+
+            //Other example:
+            //int original = 10;
+            //int result;
+            //// increment then assign
+            //result = ++original;
+            //Console.WriteLine("After prefix: {0}, {1}", original, result);
+            //// assign then increment
+            //result = original++;
+            //Console.WriteLine("After postfix: {0}, {1}", original, result);   ========>  After prefix: 11, 11  After postfix: 12, 11
+
+
             //////////Lecture 5: Using Bools//////////
 
             // > >= <= < == !=
@@ -134,8 +175,8 @@ namespace myFirstCS  //comment
             Console.WriteLine(myBool5_2);
 
             int hoursWorked = 41;
-            bool doeasEmployeeGetOverTime = hoursWorked > 40;
-            Console.WriteLine("Does emloyee get overtime? {0}", doeasEmployeeGetOverTime);
+            bool doesEmployeeGetOverTime = hoursWorked > 40;
+            Console.WriteLine("Does emloyee get overtime? {0}", doesEmployeeGetOverTime); // ---> True
 
             //////////Lecture 6: Using Char//////////
             char myChar6 = 'A';
@@ -149,6 +190,15 @@ namespace myFirstCS  //comment
             //////////Lecture 7: Using String//////////
             string MyString7 = "Hello \"= bello";
             Console.WriteLine(MyString7);
+            //string firstName = "John ";
+            //string lastName = "Doe";
+            //string name = firstName + lastName;  // The + operator can be used between strings to combine them. This is called concatenation.
+            //string name = string.Concat(firstName, lastName);
+            // string name = $"My full name is: {firstName} {lastName}"; //Another option of string concatenation, is string interpolation, which substitutes values of variables into placeholders in a string
+            // Console.WriteLine(myString[1]);  // Outputs "e"
+            // string myString = "Hello"; Console.WriteLine(myString.IndexOf("e"));  // Outputs "1"
+            // string txt = "We are the so-called \"Vikings\" from the north.";  ---> We are the so-called "Vikings" from the north.
+            // \n - newline, \t - tab, \b - backspace
 
             string name1 = "Jesse";
             string name2 = "Jesse";
@@ -157,10 +207,10 @@ namespace myFirstCS  //comment
             int namesEqual3 = string.Compare(name1, name2);  //V3 összehaonlítás; itt int!!!
             //0 megegyezik; -1 nem egyezik meg Bob-Jessie; 1 nem egyezik meg: Jessi-Bob jessie is greater than bob
             int namesequel4 = name1.CompareTo(name2);  //V4 öszehasonlítás, olyan mint előző V3 int -1 0 1 
-            Console.WriteLine("names equal: {0}", namesEqual);
-            Console.WriteLine("names equal: {0}", namesEqual2);
-            Console.WriteLine("names equal: {0}", namesEqual3);
-            Console.WriteLine("names equal: {0}", namesEqual3);
+            Console.WriteLine("name1 == name BOOL  names equal: {0}", namesEqual);
+            Console.WriteLine("string.Equals(name1, name2) BOOL names equal: {0}", namesEqual2);
+            Console.WriteLine("string.Compare(name1, name2) INT names equal: {0}", namesEqual3);
+            Console.WriteLine("name1.CompareTo(name2) INT names equal: {0}", namesequel4);
 
             Console.WriteLine("{0} has {1} characters", name1, name1.Length);  //--> jesse 5
             //.Length megszámolja karaktereket
@@ -192,7 +242,9 @@ namespace myFirstCS  //comment
             //Math.PI = 999;  //ezt sem lehet változtatni Pi értéke
             Console.WriteLine(Math.PI);  //kiiratjuk PI értékét  --> 3.14159265358979
 
-            //enum fent lesz definiálva. 
+            //enum fent van definiálva. // An enum is a special "class" that represents a group of constants (unchangeable/read-only variables)
+            //enum DayOfWeek { Sunday, Monday, Tuesday, Wednesday, Thurstday, Friday, Saturday };
+
             DayOfWeek today = DayOfWeek.Friday;
             Console.WriteLine(today);  // --> Friday
             int numberOfToday = (int)today;  
@@ -211,10 +263,6 @@ namespace myFirstCS  //comment
             numberFromUser += 10;
             numberFromUser = numberFromUser + 10;   //2 változat: növelni 10-zel
             Console.WriteLine("The new number is {0}", numberFromUser);
-
-
-
-
 
         }
     }

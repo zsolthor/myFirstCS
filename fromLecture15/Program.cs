@@ -25,6 +25,11 @@ namespace fromLecture15
             Console.WriteLine("Wow You are Young");
             }
 
+            //Use if to specify a block of code to be executed, if a specified condition is true
+            //Use else to specify a block of code to be executed, if the same condition is false
+            //Use else if to specify a new condition to test, if the first condition is false
+            //Use switch to specify many alternative blocks of code to be executed
+
             //////////Lecture 16: If-Else Statements//////////
             Console.WriteLine("Enter Your Age:");
             int age15_2 = int.Parse(Console.ReadLine());
@@ -98,7 +103,7 @@ namespace fromLecture15
                 case 1:
                     {
                         Console.WriteLine("Freshman");
-                        break;  //kell a break a c#-ban
+                        break;  //kell a break a c#-ban // A break can save a lot of execution time because it "ignores" the execution of all the rest of the code in the switch block.
                     }
                 case 2:
                     {
@@ -116,17 +121,23 @@ namespace fromLecture15
                         Console.WriteLine("Senior");
                         break;
                     }
-                default:
-                    {
+                default:  // The default keyword is optional and specifies some code to run if there is no case match
+                {
                         Console.WriteLine("Invalid Year");
                         break;
-                    }               
+                    }               //1 - case1, 2 - case2, 3 - case3, 4 - case4, other values - default
                     
             }
 
 
             //////////Lecture 19: Conditional and Not Operators//////////
             // (condition) ? true : false
+            // variable             = (condition)   ?   expressionTrue :  expressionFalse;
+            // int biggestNumber    = x19 > y19     ?   x19 : y19;
+            // There is also a short-hand if else, which is known as the ternary operator because it consists of three operands. 
+            // It can be used to replace multiple lines of code with a single line. It is often used to replace simple if else statements
+            // Short Hand If...Else (Ternary Operator)
+
             int x19 = 7;
             int y19 = 6;
 
@@ -137,6 +148,8 @@ namespace fromLecture15
 
             double testScore = 59.6;
             Console.WriteLine((testScore >= 60)  ? "pass" : "fail");  //itt pass vagy fail lesz kiiratva
+
+
 
             // Not operator 
             // int myInt = 5;

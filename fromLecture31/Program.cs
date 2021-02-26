@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace fromLecture31
 {
@@ -157,7 +158,7 @@ namespace fromLecture31
             for (int i35_1 = 0; i35_1 < myArray35_1.Length; i35_1++)
             {
                 Console.WriteLine(myArray35_1[i35_1]);
-            }
+            } // --> 2,5,7,10,55
 
             //reverse function ----------------------------------------
             int[] myArray35_2 = { 10, 5, 7, 2, 55 };
@@ -234,6 +235,13 @@ namespace fromLecture31
                 }
                 Console.WriteLine(); //első sor sortörés
             }
+
+            // System.Linq Namespace  // Kell: !!! using System.Linq; !!! +++
+            int[] myNumbersLinQ = { 5, 1, 8, 9, 2, 33, 1, 7 };
+            Console.WriteLine(myNumbersLinQ.Max());  // returns the largest value  --> 33
+            Console.WriteLine(myNumbersLinQ.Min());  // returns the smallest value --> 1
+            Console.WriteLine(myNumbersLinQ.Sum());  // returns the sum of elements --> 66
+
         }
     }
 }

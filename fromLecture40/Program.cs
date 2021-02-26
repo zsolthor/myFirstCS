@@ -10,6 +10,10 @@ namespace fromLecture40
             //Console.WriteLine(); --> WriteLine is a method. //int.Parse --> method
             //Methods are sometimes also called functions
 
+            //A method is a block of code which only runs when it is called. You can pass data, known as parameters, into a method.
+            //Methods are used to perform certain actions, and they are also known as functions. Why use methods? To reuse code: define the code once, and use it many times.
+            //void means that this method does not have a return value.
+
             // Lecture 41: Creating Methods
             // Lecture 42: Pass by Reference vs Pass by Value
             // Lecture 43: Ref Keyword
@@ -25,19 +29,47 @@ namespace fromLecture40
             // Console.WriteLine(); --> Console is a class; .WriteLine is a public method
             // DisplayMessage, Add, Add2 -- 41-esben lett létrehozva
 
-            DisplayMessage();  //a main kívül írtuk meg ezt a methodus-t, ahogy elkezdjuk gépelni, már VS mutatja a lils négyzetet, hogy elérhető, ha megvan írva.
+            DisplayMessage();  //a main kívül írtuk meg ezt a methodus-t, ahogy elkezdjuk gépelni, már VS mutatja a lila négyzetet, hogy elérhető, ha megvan írva.
+            // method 
+            //public static void DisplayMessage()     //void -- no return type, no answer, only doing action; returning nothing
+            //{                                       //()-parameters, any information your method needs in order to complete the tasks
+            //    Console.WriteLine("Hello method World!");
+            //}
             Console.WriteLine("TEST");  // --> "Test" a ()-ben: parameter. A mi DisplayMessage-ünknek nincs szüksége paraméterre.
 
-            Add(5, 10);
-            Add(500, 51);  //itt már van paraméter
+            MyMethod1("Liam");
+            MyMethod1("Jenny");
+            MyMethod1("Anja");
+            //When a parameter is passed to the method, it is called an argument.So, from the example above: fname is a parameter, while Liam, Jenny and Anja are arguments.
+            // method 
+            //static void MyMethod1(string fname)
+            //{
+            //    Console.WriteLine(fname + " Refsnes");
+            //}
+
+
+            Add(5, 10);  // --> 15
+            Add(500, 51);  //itt már van paraméter // --> 551
+                           // method
+            //public static void Add(int number1, int number2)
+            //{
+            //    int answer = number1 + number2;
+            //    Console.WriteLine(answer);
+            //}
 
             Add2(20, 30);
-            int answer = Add2(1, 8);
+            int answer = Add2(1, 8);  // --> 9
             //int answer = Add(3, 8); //ha itt komment ki van szedve, akkor látszik, hogy egyből error van, mert az első Add method void típus
             Console.WriteLine(answer);
 
             int secondAnswer = Add2(answer, 5);  // Alt+F12 vagy jobb klikk és "Peek Definition", mutatja a kódot.
-            Console.WriteLine(secondAnswer);
+            Console.WriteLine(secondAnswer); // --> 14
+            //method
+            //public static int Add2(int number1, int number2)  //void helyett int, lesz visszatérési értéke
+            //{
+            //    int answer = number1 + number2;
+            //    return answer;
+            //}
 
             //int a = int.Parse(Console.ReadLine());  //Parse, van visszatérisi értéke. Egy integer.
 
@@ -51,6 +83,14 @@ namespace fromLecture40
             /// 3 sor lesz konzolban 75, 78, 75 értékkel.
             /// inside function-ban 78
             /// main-ben, pedig 75 marad. Ez a pass by value.
+            
+            // method
+            //public static void GiveExtraCredit(int studentsGrade)  // Pass by Value
+            //{
+            //    studentsGrade += 3;
+            //    Console.WriteLine("Students grade after extra credit inside function: {0}", studentsGrade);
+            //}
+
 
             // Pass by reference (classes)--------------------------------------------------
             int[] grades = new int[1];  // integer array is a class, reference type  //new keyword -- memory location  // itt nem value, hanem memory location
@@ -58,12 +98,23 @@ namespace fromLecture40
             Console.WriteLine("Students grade before extra credit: {0}", grades[0]);
             GiveExtraCreditArray(grades);
             Console.WriteLine("Students grade (reference) after extra credit: {0}", grades[0]);
+            // method
+            //public static void GiveExtraCreditArray(int[] grades)  // Pass by reference
+            //{
+            //    grades[0] += 3;
+            //    Console.WriteLine("Students grade after extra credit inside (pass by reference) function: {0}", grades[0]);
+            //}
 
             ///////// Lecture 43: Ref Keyword /////////
             ///ref keywords requires an initial value
             int studentGrade43 = 75;  // ha nem lenne értéke, akkor a következő hívás error-t jelezne: GiveExtraCredit43(ref studentGrade43);
             GiveExtraCredit43(ref studentGrade43);  // "ref" hozzáadva paraméterhez itt és methodusban
             Console.WriteLine(studentGrade43);
+            // method
+            //public static void GiveExtraCredit43(ref int studentGrade43) // "ref" hozzáadva paraméterhez itt a methodusban és meghívásnál
+            //{                                                               // force value type pass by reference
+            //    studentGrade43 += 5;
+            //}
 
             ///////// Lecture 44: Out Keyword /////////
             ///You can use the out keyword to return more than 1 value from a method. TRUE
@@ -71,12 +122,24 @@ namespace fromLecture40
             int studentGrade44;  // nincs értéke, de methodus-ban kellett értéket adni error miatt
             GiveExtraCredit44(out studentGrade44);  // "out" hozzáadva paraméterhez itt és methodusban
             Console.WriteLine(studentGrade44);
+            //method
+            //public static void GiveExtraCredit44(out int studentGrade44)  // "out" hozzáadva paraméterhez itt a methodusban és meghívásnál
+            //{
+            //    studentGrade44 = 2;  //kell egy érték adás, mert error volt
+            //    studentGrade44 += 8;
+            //}
 
             int add;
             int mult;
             AddAndMult(5, 10, out add, out mult);
             Console.WriteLine(add); // --> 15
             Console.WriteLine(mult); // --> 50
+            //method
+            //public static void AddAndMult(int a, int b, out int added, out int mult)
+            //{
+            //    added = a + b;
+            //    mult = a * b;
+            //}
 
             ///////// Lecture 45: Params Keyword /////////
             ///unlimited parameters
@@ -86,6 +149,15 @@ namespace fromLecture40
             //Console.WriteLine("Hello {0} {1} {2} {3} {4} {5} {6}", 5, 6, 7, 8, 9, 10, 11);
             PrintArray(5, 6, 7, 8, 9, 10); //array-t vár nem különálló integer értékeket alapból. // public static void PrintArray(int[] array) //error lesz //ezárt kell: public static void PrintArray(params int[] array)
             PrintArray(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18); // minden elemet kiír itt
+            //method
+            //public static void PrintArray(params int[] array) //params hozzáadva
+            //{
+            //    for (int i45 = 0; i45 < array.Length; i45++)
+            //    {
+            //        Console.Write(array[i45]);
+            //        Console.WriteLine();
+            //    }
+            //}
 
             ///////// Lecture 46: Method Overloading /////////
 
@@ -133,16 +205,22 @@ namespace fromLecture40
             return answer;
         }
 
+        static void MyMethod1(string fname)
+        {
+            Console.WriteLine(fname + " Refsnes");
+        }
+
         // Lecture 42: Pass by Reference vs Pass by Value
         public static void GiveExtraCredit(int studentsGrade)  // Pass by Value
         {
             studentsGrade += 3;
-            Console.WriteLine("Students grade after extra credit inside function: {0}", studentsGrade);
+            Console.WriteLine("Students grade after extra credit inside (pass by value) function: {0}", studentsGrade);
         }
 
         public static void GiveExtraCreditArray(int[] grades)  // Pass by reference
         {
             grades[0] += 3;
+            Console.WriteLine("Students grade after extra credit inside (pass by reference) function: {0}", grades[0]);
         }
 
         // Lecture 43: Ref Keyword
